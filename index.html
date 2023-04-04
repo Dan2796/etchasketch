@@ -9,15 +9,21 @@
 <!-- disabled drag because it was messing with the etchasketch drawing -->
 <body ondragstart="return false;" ondrop="return false;">
 <div class="body">
-  <h1>Etch-A-Sketch</h1>
-  <div class="outerBox">
-      <div class="etchASketch">
-      </div>
-  </div>
-  <div class="sliderContainer">
-      <h2>Choose how many Etch-A-Sketch pixels to show:</h2>
-      <input type="range" min="10" max="50" step="1" value="50" class="slider" id="colInput">
-  </div>
+    <h1>Etch-A-Sketch</h1>
+    <div class="sketchAndOptions">
+        <div class="optionsContainer">
+            <h2>Choose how many Etch-A-Sketch pixels to show. (Warning - this will clear the existing picture!)</h2>
+            <input autocomplete="off" type="range" min="10" max="50" step="1" value="30" class="slider" id="colInput">
+            <div class="containerGridToggle">
+                <input autocomplete="off" type="checkbox" id="gridToggle" class="gridToggle">
+                <label for="gridToggle">Toggle grid lines</label>
+            </div>
+        </div>
+        <div class="outerBox">
+            <div class="etchASketch">
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

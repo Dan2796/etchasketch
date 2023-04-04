@@ -1,11 +1,13 @@
 const etchASketch = document.querySelector('.etchASketch');
 const slider = document.querySelector("#colInput");
-
+const gridToggle = document.querySelector(".gridToggle");
+let gridShown = false; // start with grid not shown
 function spawnBoxes(colNumber) {
     const boxNumber = colNumber ** 2; // as many rows as columns
     for (let i = 0; i < boxNumber; i++) {
         const box = document.createElement('div');
         box.classList.add('box');
+        if (gridShown) box.classList.add('grid');
         etchASketch.appendChild(box);
         // special rules to round the four corners
         if (i === 0) {
@@ -40,8 +42,6 @@ function drawGrid(colNumber) {
     listenForClicksOnAnyBox();
 }
 
-// default grid draw at middle of scale
-drawGrid(10);
 
 slider.oninput = function() {
     drawGrid(this.value);
@@ -62,3 +62,21 @@ function listenForClicksOnAnyBox() {
 let mouseIsDown = false;
 addEventListener('mousedown', () => mouseIsDown = true);
 addEventListener('mouseup', () => mouseIsDown = false);
+
+function toggleGridLines(gridShown) {
+    const allBoxes = document.querySelectorAll('.box');
+    allBoxes.forEach(box => {
+        if (gridShown) {
+            box.classList.remove('grid');
+        } else {
+            box.classList.add('grid');
+        }
+    })
+}
+gridToggle.addEventListener('click', () => {
+    toggleGridLines(gridShown);
+    gridShown = !gridShown;
+});
+
+// default grid draw at middle of scale
+drawGrid(30);
