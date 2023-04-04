@@ -26,7 +26,8 @@ function spawnBoxes(colNumber) {
 // note - take col number so that it is always equal rows and cols, otherwise would need to ask for number of boxes
 // then check it has a square root etc
 function drawGrid(colNumber) {
-    // remove all boxes
+
+    // remove all existing boxes
     const allBoxes = document.querySelectorAll('.box');
     allBoxes.forEach(box => {
         box.remove();
@@ -36,14 +37,28 @@ function drawGrid(colNumber) {
     spawnBoxes(colNumber);
     // update the css to make sure it wraps on the right number of columns
     etchASketch.style.gridTemplateColumns = `repeat(${colNumber}, 1fr)`;
+    listenForClicksOnAnyBox();
 }
 
 // default grid draw at middle of scale
-drawGrid(30);
+drawGrid(10);
 
 slider.oninput = function() {
     drawGrid(this.value);
     etchASketch.style.gridTemplateColumns = `repeat(${this.value}, 1fr)`;
 }
 
+// remove all existing boxes
+function listenForClicksOnAnyBox() {
+    const allBoxes = document.querySelectorAll('.box');
+    allBoxes.forEach(box => {
+        box.addEventListener("mouseover", () => {
+            if (mouseIsDown) box.classList.add('clicked');
+        })
+    });
+}
 
+// need to track mouse depress to see if user is trying to actually draw!
+let mouseIsDown = false;
+addEventListener('mousedown', () => mouseIsDown = true);
+addEventListener('mouseup', () => mouseIsDown = false);
