@@ -1,12 +1,14 @@
 const etchASketch = document.querySelector('.etchASketch');
-const slider = document.querySelector("#colInput");
-const gridToggle = document.querySelector(".gridToggle");
-const rainbowMode = document.querySelector(".rainbowMode");
-const clearButton = document.querySelector(".clearButton");
+const slider = document.querySelector('#colInput');
+const gridToggle = document.querySelector('#gridToggle');
+const rainbowMode = document.querySelector('#rainbowMode');
+const eraserMode = document.querySelector('#eraserMode');
+const clearButton = document.querySelector('.clearButton');
 
 let gridShown = false; // start with grid not shown
 let currentColNumber = 30; // default
 let rainbowModeActive = false;
+let eraserModeActive = false;
 
 // draw default grid before user has done anything
 drawGrid(currentColNumber);
@@ -37,7 +39,12 @@ gridToggle.addEventListener('click', () => {
     gridShown = !gridShown;
 });
 
-rainbowMode.addEventListener('click', () => rainbowModeActive = !rainbowModeActive)
+rainbowMode.addEventListener('click', () => {
+    rainbowModeActive = !rainbowModeActive;
+})
+
+eraserMode.addEventListener('click', () => {eraserModeActive = !eraserModeActive;
+})
 
 clearButton.addEventListener('click', () => drawGrid(currentColNumber));
 
@@ -83,10 +90,12 @@ function spawnBoxes(colNumber) {
 
 function colourInBox(box) {
     // manipulate the css directly rather than use classes because want a rainbow option
-    if (rainbowModeActive) {
+    if (eraserModeActive) {
+        box.style.backgroundColor = 'white';
+    } else if (rainbowModeActive) {
         box.style.backgroundColor = generateRandomColour();
     } else {
-        box.style.backgroundColor = "black";
+        box.style.backgroundColor = 'black';
     }
 }
 
