@@ -62,7 +62,7 @@ h2 {
     cursor: pointer;
 }
 
-.gridToggle {
+.gridToggle, .rainbowMode {
     width: 25px;
     height: 25px;
     background-color: #80A1C1;
@@ -70,7 +70,7 @@ h2 {
     opacity: 0.7;
     margin-right: 20px;
 }
-.containerGridToggle {
+.containerCheckbox {
     display: flex;
     margin-bottom: 20px;
 }
@@ -89,6 +89,10 @@ label {
     font-family: cursive;
     border-radius: 30px;
     opacity: 0.7;
+}
+
+.clearButton:hover {
+    opacity: 1;
 }
 
 .outerBox {

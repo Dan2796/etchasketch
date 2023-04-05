@@ -1,10 +1,12 @@
 const etchASketch = document.querySelector('.etchASketch');
 const slider = document.querySelector("#colInput");
 const gridToggle = document.querySelector(".gridToggle");
+const rainbowMode = document.querySelector(".rainbowMode");
 const clearButton = document.querySelector(".clearButton");
 
 let gridShown = false; // start with grid not shown
 let currentColNumber = 30; // default
+let rainbowModeActive = false;
 
 // draw default grid before user has done anything
 drawGrid(currentColNumber);
@@ -13,6 +15,17 @@ drawGrid(currentColNumber);
 let mouseIsDown = false;
 addEventListener('mousedown', () => mouseIsDown = true);
 addEventListener('mouseup', () => mouseIsDown = false);
+
+// box click event listener inside a function because it needs to be called everytime the grid is redrawn:
+function listenForClicksOnAnyBox() {
+    const allBoxes = document.querySelectorAll('.box');
+    allBoxes.forEach(box => {
+        box.addEventListener('mouseover', () => {
+            if (mouseIsDown) colourInBox(box);
+        })
+        box.addEventListener('click', () => colourInBox(box)); // check for a click as well
+    });
+}
 
 slider.oninput = function() {
     currentColNumber = this.value;
@@ -24,7 +37,15 @@ gridToggle.addEventListener('click', () => {
     gridShown = !gridShown;
 });
 
+rainbowMode.addEventListener('click', () => rainbowModeActive = !rainbowModeActive)
+
 clearButton.addEventListener('click', () => drawGrid(currentColNumber));
+
+function drawGrid(colNumber) {
+    removeCurrentBoxes();
+    spawnBoxes(colNumber);
+    listenForClicksOnAnyBox();
+}
 
 function removeCurrentBoxes() {
     const allBoxes = document.querySelectorAll('.box');
@@ -60,21 +81,21 @@ function spawnBoxes(colNumber) {
     etchASketch.style.gridTemplateColumns = `repeat(${colNumber}, 1fr)`;
 }
 
-function listenForClicksOnAnyBox() {
-    const allBoxes = document.querySelectorAll('.box');
-    allBoxes.forEach(box => {
-        box.addEventListener("mouseover", () => {
-            if (mouseIsDown) box.classList.add('clicked');
-        })
-    });
+function colourInBox(box) {
+    // manipulate the css directly rather than use classes because want a rainbow option
+    if (rainbowModeActive) {
+        box.style.backgroundColor = generateRandomColour();
+    } else {
+        box.style.backgroundColor = "black";
+    }
 }
 
-function drawGrid(colNumber) {
-    removeCurrentBoxes();
-    spawnBoxes(colNumber);
-    listenForClicksOnAnyBox();
+function generateRandomColour() {
+    const red = Math.floor(Math.random() * 256) + 1;
+    const green = Math.floor(Math.random() * 256) + 1;
+    const blue = Math.floor(Math.random() * 256) + 1;
+    return `rgb(${red}, ${green}, ${blue})`
 }
-
 
 function toggleGridLines(gridShown) {
     const allBoxes = document.querySelectorAll('.box');

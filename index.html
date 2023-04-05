@@ -14,9 +14,13 @@
         <div class="optionsContainer">
             <h2>Choose how many Etch-A-Sketch pixels to show. (Warning - this will clear the existing picture!)</h2>
             <input autocomplete="off" type="range" min="10" max="50" step="1" value="30" class="slider" id="colInput">
-            <div class="containerGridToggle">
+            <div class="containerCheckbox">
                 <input autocomplete="off" type="checkbox" id="gridToggle" class="gridToggle">
-                <label for="gridToggle">Toggle grid lines</label>
+                <label for="gridToggle">Show grid lines</label>
+            </div>
+            <div class="containerCheckbox">
+                <input autocomplete="off" type="checkbox" id="rainbowMode" class="rainbowMode">
+                <label for="rainbowMode">Rainbow mode</label>
             </div>
             <button class="clearButton">Clear picture</button>
         </div>
