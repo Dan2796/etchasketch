@@ -86,19 +86,6 @@ function spawnBoxes(colNumber) {
         box.style.backgroundColor = 'rgb(255, 255, 255)'; // set here as rgb so it can be retrieved by shading version
         if (gridShown) box.classList.add('grid');
         etchASketch.appendChild(box);
-        // special rules to round the four corners
-        if (i === 0) {
-            box.setAttribute('id', 'topLeft');
-        }
-        if (i === colNumber - 1) {
-            box.setAttribute('id', 'topRight');
-        }
-        if (i === boxNumber - colNumber) {
-            box.setAttribute('id', 'bottomLeft');
-        }
-        if (i === boxNumber - 1) {
-            box.setAttribute('id', 'bottomRight');
-        }
     }
     // Update the css to make sure it wraps on the right number of columns. Note that it's a grid layout:
     etchASketch.style.gridTemplateColumns = `repeat(${colNumber}, 1fr)`;
