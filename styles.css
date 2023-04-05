@@ -62,7 +62,7 @@ h2 {
     cursor: pointer;
 }
 
-#gridToggle, #rainbowMode, #eraserMode {
+#gridToggle, #rainbowMode, #shadingMode, #eraserMode {
     width: 25px;
     height: 25px;
     background-color: #80A1C1;
