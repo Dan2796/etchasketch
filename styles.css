@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-    font-family: cursive;
+    font-family: cursive, serif;
 }
 
 .sketchAndOptions {
@@ -29,7 +29,7 @@ h1 {
 }
 
 h2 {
-    font-family: cursive;
+    font-family: cursive, serif;
 }
 .slider {
     -webkit-appearance: none;
@@ -46,14 +46,6 @@ h2 {
 
 .slider:hover {
     opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
@@ -76,7 +68,7 @@ h2 {
 }
 
 label {
-    font-family: cursive;
+    font-family: cursive, serif;
     display: flex;
     font-size: 25px;
 }
@@ -86,7 +78,7 @@ label {
     height: 40px;
     font-size: 26px;
     background-color: #80A1C1;
-    font-family: cursive;
+    font-family: cursive, serif;
     border-radius: 30px;
     opacity: 0.7;
 }
